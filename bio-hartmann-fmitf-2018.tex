@@ -1,0 +1,387 @@
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+%
+% Bj\"oern Hartmann
+% NSF CAREER 2010 Proposal 
+% Copied from James O'Brien's MICRO Proposal, Creative IT 09 proposal
+%
+%--------------------------------------------------------------------
+
+\ProvidesFile{bio-hartmann-ccf-medium2017.tex}
+%\documentclass[10pt,onecolumn,letterpaper]{article}
+\documentclass[11pt]{article}
+
+\usepackage{times}
+%\usepackage{palatino}
+%\usepackage{arial}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{fancyhdr}
+\usepackage{cite}
+\usepackage{ifthen}
+\usepackage[usenames]{color}
+\usepackage{url}
+
+%--------------------------------------------------------------------
+
+%\flushbottom
+
+\setlength{\parindent     }{   0in}
+\setlength{\parskip       }{.075in}
+
+\setlength{\oddsidemargin }{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin     }{0in}
+%\setlength{\headsep       }{  .15in}
+\setlength{\headsep       }{  .2in}
+\setlength{\textheight    }{ 8.5in}
+\setlength{\textwidth     }{ 6.3in}
+\setlength{\parindent     }{   0in}
+\setlength{\headheight    }{   0in}
+\setlength{\parindent     }{   0in}
+
+%--------------------------------------------------------------------
+% Creating the pcode command for writing psuedocode
+\newcommand{\pcline }{\rule{0in}{0.0in}    }  % Spacing for pseudo-code.
+\newcommand{\pctab  }{\hspace{0.10in}      }  % Pseudo-code indentation.
+\newcommand{\pcbigtab  }{\hspace{0.1in}    }  % Pseudo-code indentation.
+\newcommand{\pcasgn }{\mbox{$\leftarrow$}  }  % Pseudo-code assignment operato
+\newcommand{\pcomment}[1]{{\it #1}}  % Pseudo-code comments.
+
+\newcommand{\pcode}[1]{
+    \vspace{-0.1in}
+    \begin{minipage}{100in} % The width argument will be ignored:
+                            % See lamport p. 99
+    \begin{tabbing} \hspace{0.20in} \= \pcbigtab \= \pcbigtab \= \pcbigtab \=
+\pcbigtab \= \pcbigtab \= \\
+       #1
+    \end{tabbing}
+    \end{minipage}
+%    \vspace{0.15in}
+}
+%--------------------------------------------------------------------
+
+\newcommand{\assA}{-1ex}
+\newcommand{\assB}{-2ex}
+
+\newcommand{\assAs}{-1ex}
+\newcommand{\assBs}{-2ex}
+
+\newcommand{\assAss}{-1ex}
+\newcommand{\assBss}{-2ex}
+
+\newcommand{\assAp}{-1ex}
+\newcommand{\assBp}{-2ex}
+
+\newcommand{\assAsp}{-1ex}
+\newcommand{\assBsp}{-2ex}
+
+\let\ORIGsection\section
+\newcommand{\sectionname}{Section Name}
+\def\section#1{\ifthenelse{\equal{#1}{*}}%
+	{\sectionS}%
+	{\renewcommand{\sectionname}{#1}\vspace{\assA}\ORIGsection{#1}\vspace{\assB}}}%
+\def\sectionS#1{\renewcommand{\sectionname}{#1}\vspace{\assA}\ORIGsection*{#1}\vspace{\assB}}%
+
+\let\ORIGsubsection\subsection
+\def\subsection#1{\ifthenelse{\equal{#1}{*}}%
+	{\subsectionS}%
+	{\vspace{\assAs}\ORIGsubsection{#1}\vspace{\assBs}}}%
+\def\subsectionS#1{\vspace{\assAs}\ORIGsubsection*{#1}\vspace{\assBs}}%
+
+
+\let\ORIGsubsubsection\subsubsection
+\def\subsubsection#1{\ifthenelse{\equal{#1}{*}}%
+	{\subsubsectionS}%
+	{\vspace{\assAss}\ORIGsubsubsection{#1}\vspace{\assBss}}}%
+\def\subsubsectionS#1{\vspace{\assAss}\ORIGsubsubsection*{#1}\vspace{\assBss}}%
+
+
+\let\ORIGparagraph\paragraph
+\def\paragraph#1{\ifthenelse{\equal{#1}{*}}%
+	{\paragraphS}%
+	{\vspace{\assAp}\ORIGparagraph{#1}}}%
+\def\paragraphS#1{\vspace{\assAp}\ORIGparagraph*{#1}}%
+
+
+\let\ORIGsubparagraph\subparagraph
+\def\subparagraph#1{\ifthenelse{\equal{#1}{*}}%
+	{\subparagraphS}%
+	{\vspace{\assAsp}\ORIGsubparagraph{#1}}}%
+\def\subparagraphS#1{\vspace{\assAsp}\ORIGsubparagraph*{#1}}%
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\newcommand{\Cite}[1]{\,\cite{#1}}
+
+% Make the captions have small ``Figure #'' 
+\makeatletter
+\renewcommand{\@makecaption}[2]{%
+        \vskip\abovecaptionskip
+        {\small #1:} {\small #2\par
+        \vskip\belowcaptionskip}}
+\makeatother
+
+\newcommand{\figureTop}[1]{
+  \begin{figure}[!t]{\sloppy #1}\end{figure}
+}
+
+\newcommand{\figureBot}[1]{
+  \begin{figure}[!b]{\sloppy #1}\end{figure}
+}
+
+
+% Comment region command from Sara McMains
+\newcommand{\comment}[1]{} 
+% Make text red command (requires \usepackage[usenames]{color})
+\newcommand{\textred}[1]{\textcolor{red}{#1}}
+\newcommand {\note}[1]{{\color{magenta}\bf{Note: #1}\normalfont}}
+\newcommand {\maneesh}[1]{{\color{red}\bf{MA: #1}\normalfont}}
+\newcommand {\bjoern}[1]{{\color{blue}\bf{BH: #1}\normalfont}}
+
+% get rid of comments
+%\renewcommand {\maneesh}[1]{}
+%\renewcommand {\bjoern}[1]{}
+
+
+%--------------------------------------------------------------------
+
+\begin{document}
+
+\newlength{\origbaselineskip}
+\setlength{\origbaselineskip}{\baselineskip}
+%\setlength{\baselineskip}{.8\origbaselineskip}
+
+
+%--------------------------------------------------------------------
+\newcommand{\mytitle}{Biographical Sketch: Elena Leah Glassman}
+
+%\pagestyle{plain}  %Plain style with page numbes
+%\pagestyle{empty}  %Plain style with no page numbers
+\pagestyle{fancy}
+\lhead{\small\textsl{\mytitle}}
+\rhead{}
+\chead{}
+\lfoot{}
+\rfoot{}
+\cfoot{\small\textsl{Page \thepage}} % Add in page numbers
+%\cfoot{\small\textsl{}} % Remove page numbers
+\renewcommand{\footrulewidth}{0pt}
+
+\renewcommand{\thepage}{\arabic{page}}
+\renewcommand{\thesection}{\hspace{-0.20in}}%{\Alph{section}} %bjoern
+%\renewcommand{\thesubsection}{\arabic{subSection}}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \cfoot{\small\textsl{Page \thepage}} 
+  \renewcommand{\footrulewidth}{0pt}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+
+
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+
+\thispagestyle{plain}
+\newlength{\spc}
+\setlength{\spc}{.3in}
+
+\newcommand{\Statement}[1]{#1\vspace{.15\spc}}
+\newcommand{\Section   }[1]{\vspace{.15\spc}\textsc{\textbf{#1}}\vspace{.1\spc}}
+\newcommand{\SubSection}[1]{\vspace{.10\spc}        \textbf{#1} \vspace{.1\spc}}
+
+\newcommand{\PlainItem}[2]{\parbox[t]{.9in}{         }\hfill\parbox[t]{5.4in}{\textbf{#1}#2}\vspace{.15\spc}}
+\newcommand{\DatedItem}[3]{\parbox[t]{.9in}{\small #1}\hfill\parbox[t]{5.4in}{\textbf{#2}#3}\vspace{.15\spc}}
+
+\newcommand{\Pub}[1]{#1\vspace{.15\spc}}
+
+\newcommand{\Junk}[1]{---\hfill\parbox[t]{431pt}{#1}\vspace{.15\spc}}
+
+\newcommand{\StatementCat}[2]{\parbox[t]{1.1in}{\textbf{#1}}\hfill\parbox[t]{5.4in}{#2}\vspace{.15\spc}}
+
+\begin{center}
+\large
+\textbf{Biographical Sketch: Elena Leah Glassman}\\
+\vspace{0.05\spc}
+\normalsize
+Assistant Professor, Computer Science\\
+SEAS \& the Radcliffe Institute for Advanced Study\\
+Harvard University (Cambridge, MA, USA)\\
+\small{\url{https://www.seas.harvard.edu/directory/glassman}}
+\end{center}
+%\vspace{0.05\spc}
+%\hrule
+%\vspace{-0.2in}
+
+%\Section{Role in Project:}\\
+%Director of Training Core; Investigator in User Needs Assessment Research %Project, Customization of Environments Development Project. 
+%Responsible for User Needs Assessment, Development of Scenarios
+
+\Section{Professional Preparation:}\\
+\DatedItem{June 2008}{Massachusetts Institute of Technology (Cambridge, MA, USA)}{\\
+    Bachelor of Science in Electrical Science \& Engineering}
+\DatedItem{Feb 2010}{Massachusetts Institute of Technology (Cambridge, MA, USA)}{\\
+    Master of Engineering in Electrical Engineering \& Computer Science}
+\DatedItem{Sept 2016}{Massachusetts Institute of Technology (Cambridge, MA, USA)}{\\
+    Doctor of Philosophy in Electrical Engineering \& Computer Science\\
+    Dissertation: \textit{Clustering and Visualizing Solution Variation in Massive Programming Classes}
+%    Thesis Advisor: Professor Scott Klemmer.  
+}
+
+%----------------------------------------------------------------------------
+\Section{Appointments:}\\
+\DatedItem{2016--2018}{University of California, Berkeley (Berkeley, CA, USA)}{  \\
+            Postdoctoral Scholar, EECS \& Berkeley Institute for Design\\
+            Fellow, Berkeley Institute of Data Science
+            %CTO, Jacobs Institute for Design Innovation \\
+%Co-Founder, CITRIS Invention Lab \\
+%Co-Director, Berkeley Institute for Design and Swarm Lab
+}
+\DatedItem{2018--present}{Harvard University (Cambridge, MA, USA)}{  \\
+            Assistant Professor, CS, SEAS \& Radcliffe Institute for Advanced Study
+            %CTO, Jacobs Institute for Design Innovation \\
+%Co-Founder, CITRIS Invention Lab \\
+%Co-Director, Berkeley Institute for Design and Swarm Lab
+}\\\\
+
+      %----------------------------------------------------------------------------
+
+%\Section{Selected Awards}:\\
+%      Sloan Research Fellowship (2013), NSF CAREER Award (2012), Okawa Foundation Research Award (2012), Qualcomm Faculty Fellow (2010--Present), CHI Best Paper Award (2007,2012), UIST Best Paper Award (2006,2008,2010) \\[2pt]
+
+%------------------------------------------------------w----------------------
+
+      
+\Section{Products}\\
+{\bf Five Most Relevant Products:}\\
+% CHI 2018
+1. ``Visualizing API Usage Examples at Scale'' by Elena Glassman*, Tianyi Zhang*, Bj\"orn Hartmann, Miryung Kim. \emph{ACM Conference on Human Factors in Computing Systems} (CHI), Paper No. 580, 2018. *indicates equal contribution\\[2pt]
+% L@S2017
+2. ``Writing Reusable Code Feedback at Scale with Mixed-Initiative Program Synthesis'' by
+Andrew Head, Elena Glassman, Gustavo Soares, Ryo Suzuki, Lucas Figueredo, Loris D'Antoni, Bj\"orn Hartmann. {\em ACM Learning@Scale Conference}, pp.~89--98, 2017\\[2pt]
+% VL/HCC
+3. ``TraceDiff: Debugging Unexpected Code Behavior Using Trace Divergences'' by Ryo Suzuki, Gustavo Soares, Andrew Head, Elena Glassman, Ruan Reis, Melina Mongiovi, Loris D'Antoni, and Bj\"orn Hartmann \emph{IEEE Symposium on Visual Languages and Human-Centric Computing} (VL/HCC), pp.~107--115, 2017.\\[2pt]
+% TOCHI 2015
+4. ``OverCode: visualizing variation in student solutions to programming problems at scale'' by Elena Glassman, Jeremy Scott, Rishabh Singh, Philip Guo, Robert Miller. \emph{ACM Transactions on Computer-Human Interaction} ({\small Special Issue on Online Learning at Scale}), 22 (2), April 2015.\\[2pt]
+% Foobaz
+5. ``Foobaz: Variable Name Feedback for Student Code at Scale'' by Elena Glassman, Lyla Fischer, Jeremy Scott, Robert Miller. \emph{ACM Symposium on User Interface Software \& Technology} (UIST), pp.~609--617, 2015.\\[2pt]
+
+% ICSE 2017
+%2. ``Learning Syntactic Program Transformations from Examples'' by Reudismam Rolim, Gustavo Soares, Björn Hartmann, Loris D’Antoni, Oleksandr Polozov, Sumit Gulwani, Rohit Gheyi, Ryo Suzuki. {\em International Conference on Software Engineering (ICSE)}, pp. 404--415, 2017.\\[2pt]
+% AutomataTutor
+%3. ``How Can Automatic Feedback Help Students Construct Automata?'' by Loris D'Antoni, Dileep Kini, Rajeev Alur, Sumit Gulwani, Mahesh Viswanathan, Bj\"orn Hartmann. {\em ACM Transactions on Computer-Human Interaction} (TOCHI) 22 (2), 9, 2015.\\[2pt]
+ % wwopd
+%4. ``What Would Other Programmers Do? Suggesting Solutions to Error Messages'' by Bj\"orn Hartmann, Daniel MacDougall, Joel Brandt, and Scott R. Klemmer. {\em ACM Human Factors in Computing Systems (CHI)}, pp.~1019-1028, Apr 2010. {\em (Honorable Mention)}\\[2pt]
+%Stack Overflow
+%3. ``Design Lessons from the Fastest Q\&A Site in the West'' by Lena Mamykina, Bella Manoim, Manas Mittal, Geroge Hripcsak, and Bj\"orn Hartmann. {\em ACM Human Factors in Computing Systems (CHI)}, pp.~2857-2866, Apr 2011.} {\em (Honorable Mention)}\\[2pt]
+% Peer LEarning
+%4. ``Structuring interactions for large-scale synchronous peer learning'' by Derrick Coetzee, Seongtaek Lim, Armando Fox, Bj\"{o}rn Hartmann, and Marti A Hearst. {\em ACM Conference on Computer Supported Cooperative Work \& Social Computing (CSCW)}, pp.~1139-1152, 2015.\\[2pt]
+%CodeHint
+%5. ``Codehint: Dynamic and interactive synthesis of code snippets'' by Joel Galenson, Philip Reames, Rastislav Bodik, Björn Hartmann, and Koushik Sen. {\em International Conference on Software Engineering (ICSE)}, pp.~653-663, 2014.\\[2pt]
+
+
+% Exemplar
+%1. ``Authoring Sensor Based Interactions Through Direct Manipulation and Pattern Matching'' by Bj\"orn Hartmann, Leith Abdulla, Manas Mittal and Scott R. Klemmer. {\em Proc. ACM Human Factors in Computing Systems (CHI), pp.~145-154, Apr 2007.} {\em (CHI 2007 Best Paper Award)}\\[2pt]
+% Bespoke
+%2. ``Designing Bespoke Interactive Devices'' by Bj\"orn Hartmann and Paul K. Wright. {\em IEEE Computer, 46 (8), pp.~85-89, Aug 2013}.\\[2pt]
+% fabryq
+%3. ``fabryq: Using Phones as Gateways to Prototype Internet of Things Applications using Web Scripting'' by Will McGrath, Mozziyar Etemadi, Shuvo Roy and Bj\"orn Hartmann. {\em Proc. ACM Symposium on Engineering Interactive Computing Systems (EICS), pp.~164-173, June 2015.}\\[2pt]
+%d.tools
+%4. ``Reflective physical prototyping through integrated design, test, and analysis.'' by Bj\"orn Hartmann, Scott R. Klemmer, Michael Bernstein, Leith Abdulla, Brandon Burr, Avi Robinson-Mosher, and Jennifer Gee. {\em Proc. ACM Symposium on User Interface Software and Technology (UIST), pp.~299-308, Oct 2006.} {\em (UIST 2006 Best Paper Award)}\\[2pt]
+% Midas
+%5. ``Midas: Fabricating Custom Capacitive Touch Sensors to Prototype Interactive Objects'' by Valkyrie Savage, Xiaohan Zhang and Bj\"orn Hartmann. {\em Proc. ACM Symposium on User Interface Software and Technology (UIST), pp.~579-588, Oct 2012.}\\[2pt]
+
+%----------------------------------------------------------------------------
+\clearpage
+{\bf Five Other Products:}\\
+% CHI2018
+1. ``Interactive Extraction of Examples from Existing Code'' by Andrew Head, Elena Glassman, Bj\"orn Hartmann, Marti Hearst. \emph{ACM Conference on Human Factors in Computing Systems} (CHI), Paper No. 85, 2018. {\em (Honorable Mention---Top 4\%)}\\[2pt]
+% CSCW16
+2. ``Learnersourcing Personalized Hints'' by Elena Glassman, Aaron Lin, Carrie Cai, Rob Miller. \emph{ACM Computer-Supported Cooperative Work and Social Computing} (CSCW), pp.~1626--1636, 2016.\\[2pt]
+% DocMatrix
+3. ``DocMatrix: Self-Teaching from Multiple Sources'' by Elena Glassman, Daniel Russell. \emph{Proceedings of the Association for Information Science and Technology}, 53 (1), 2016.\\[2pt]
+4. ``Mudslide: A Spatially Anchored Census of Student Confusion for Online Lecture Videos'' by Elena Glassman, Juho Kim, Andr\'es Monroy-Hern\'andez, Merrie Ringel Morris. \emph{ACM Conference on Human Factors in Computing Systems} (CHI), pp.~1555--1564, 2015. {\em (Honorable Mention---Top 5\%)}\\[2pt]
+5. ``RIMES: Embedding Interactive Multimedia Exercises in Lecture Videos'' by Juho Kim, Elena Glassman, Andr\'es Monroy-Hern\'andez, Merrie Ringel Morris. \emph{ACM Conference on Human Factors in Computing Systems} (CHI), pp.~1535--1544, 2015.\\[2pt]
+% Sauron
+%1. ``Sauron: Embedded Single-Camera Sensing of Printed Physical User Interfaces'' by Valkyrie Savage, Colin Chang and Bj\"orn Hartmann. {\em Proc. ACM Symposium on User Interface Software and Technology (UIST), pp.~447-456, Oct 2013.}\\[2pt]
+% Proton
+%2. ``Proton: Multitouch Gestures as Regular Expressions'' by Kenrick Kin, Bj\"{o}rn Hartmann, Tony DeRose and Maneesh Agrawala. {\em Proc. ACM Human Factors in Computing Systems (CHI), pp.~2885-2894, May 2012.}\\[2pt]
+%Eden
+%3. ``Eden: A Professional Multitouch Tool for Constructing Virtual Organic Environments'' by Kenrick Kin, Tom Miller, Bj\"{o}rn Bollensdorff,Tony DeRose, Bj\"{o}rn Hartmann, and Maneesh Agrawala. {\em ACM Human Factors in Computing Systems (CHI), pp.~1343-1352, Apr 2011.} {\em (Honorable Mention)}\\[2pt]
+% Umati
+%4. ``Communitysourcing: Engaging Local Crowds to Perform Expert Work Via Physical Kiosks'' by Kurtis Heimerl, Brian Gawalt, Tapan Parikh, and Bj\"orn Hartmann. {\em ACM Human Factors in Computing Systems (CHI), pp.~1539-1548, May 2012.} {\em (Best Paper Award)}\\[2pt]
+% Soylent
+%5. ``Soylent: A Word Processor with a Crowd Inside'' by Michael Bernstein, Greg Little, Robert C. Miller, Bj\"orn Hartmann, Mark A. Ackerman, David R. Karger, David Crowell, and Katrina Panovich. {\em ACM Symposium on User Interface Software and Technology (UIST), pp.~313-322, Oct 2010.} {\em (Best Student Paper Award)}\\[2pt]
+
+% How Bodies Matter DIS06
+%5. ``How Bodies Matter'' by Scott R. Klemmer, Bj\"orn Hartmann, and Leila Takayama. {\em Proc. ACM Conference on Designing Interactive Systems (DIS), pp.~140-149, June 2006.}\\[2pt]
+%Democut
+%1. ``DemoCut: generating concise instructional videos for physical demonstrations'' by Pei-Yu Chi, Joyce Liu, Jason Linder, Mira Dontcheva, Wilmot Li. and Bj\"orn Hartmann. {\em Proc. ACM Symposium on User Interface Software and Technology (UIST), Oct 2013.}\\[2pt]
+%MixT:
+%2. ``MixT: Automatic Generation of Step-By-Step Mixed Media Tutorials'' by Pei-Yu (Peggy) Chi, Sally Ahn, Amanda Ren, Mira Dontcheva, Wilmot Li, and Bj\"orn Hartmann. {\em ACM Symposium on User Interface Software and Technology (UIST), pp.~93-102, Oct 2012.}\\[2pt]
+%Showmehow
+%3. ``ShowMeHow: Translating User Interface Instructions Between Similar Applications'' by Vidya Ramesh, Charlie Hsu, Maneesh Agrawala, and Bj\"orn Hartmann. {\em ACM Symposium on User Interface Software and Technology (UIST), pp.~127-134,  Oct 2011.}\\[2pt]
+
+%2. ``Shepherding the Crowd Yields Better Work'' by Steven Dow, Anand Kulkarni, Scott R. Klemmer, and Bj\"orn Hartmann. {\em ACM Conference on Computer Supported Cooperative Work (CSCW), pp.~1013-1022, Feb 2012.}\\[2pt]
+%Juxtapose
+%1. ``Design As Exploration: Creating Interface Alternatives Through Parallel Authoring and Runtime Tuning'' by Bj\"orn Hartmann, Loren Yu, Abel Allison, Yeonsoo Yang, and Scott R. Klemmer. {\em Proc. ACM Symposium on User Interface Software and Technology (UIST), pp.~91-100, Oct 2008.} {\em (UIST 2008 Best Student Paper Award)}\\[2pt]
+%2. ``Delta: A Tool For Representing and Comparing Workflows'' by Nicholas Kong, Tovi Grossman, Bj\"orn Hartmann, George Fitzmaurice and Maneesh Agrawala. {\em ACM Human Factors in Computing Systems (CHI), pp.~1027-1036, May 2012.}\\[2pt]
+%3. ``Pictionaire: Supporting Collaborative Design Work by Integrating Physical and Digital Artifacts.'' by Bj\"orn Hartmann, Meredith Ringel Morris, Hrvoje Benko, and Andrew D. Wilson. {\em Proc. ACM Conference on Computer Supported Cooperative Work (CSCW), pp.~421-424, Feb 2010.}\\[2pt]
+%4. ``Programming by a Sample: Leveraging Web sites to program their underlying services.'' by Bj\"orn Hartmann, Leslie Wu, Kevin Collins and Scott R. Klemmer. In A. Cypher, M. Dontcheva, J. Nichols (eds.), {\em No Code Required: Giving Users Tools to Transform the Web.} Morgan Kaufmann, 2010.\\[2pt]
+%2. ``Collaboratively Crowdsourcing Workflows with Turkomatic'' by Anand Kulkarni, Matthew Can, and Bj\"orn Hartmann. {\em ACM Conference on Computer Supported Cooperative Work (CSCW), Feb 2012. In Press.}\\[2pt]
+%5. ``What's the Right Price? Pricing Tasks for Finishing on Time'' by Siamak Faridani, Bj\"orn Hartmann and Panos G. Ipeirotis. {\em AAAI Workshop on Human Computation (HCOMP), Aug 2011}.\\[2pt]
+%2. ``d.note: Revising User Interfaces Through Change Tracking, Annotations, and Alternatives"  by Bj\"orn Hartmann, Sean Follmer, Antonio Ricciardi, Timothy Cardenas, and Scott R. Klemmer. %{\em Proc. ACM Human Factors in Computing Systems (CHI), pp.~493-502, Apr 2010.}\\[2pt]
+%2. ``HyperSource: Bridging the Gap Between Source and Code-Related Web Sites'' by Bj\"orn Hartmann, Mark Dhillon, and Matthew K. Chan. {\em Proc. ACM Human Factors in Computing Systems (CHI), pp.~2207-2210, Apr 2011.} \\[2pt]
+
+
+%----------------------------------------------------------------------------
+\Section{Synergistic Activities:}\\
+
+%innovations in teaching and training (e.g., development of curricular materials and pedagogical methods); contributions to the science of learning; development and/or refinement of research tools; computation methodologies and algorithms for problem-solving; development of databases to support research and education; broadening the participation of groups underrepresented in STEM; and service to the scientific and engineering community outside of the individual’s immediate organization.
+
+1. Developed and taught introductory computer science curriculum for, and later served on the leadership team for, the Middle East Education through Technology organization, which brings together high-school-age Israeli and Palestinian boys and girls to create positive change through technology and entrepreneurship, in partnership with the Massachusetts Institute of Technology (MIT).\\[2pt]
+2. Awarded the MIT Amar Bose Teaching Fellowship, for developing innovative tools for teaching computer science at scale at MIT, such as a tool for eliciting and distributing personalized learnersourced debugging and design optimization hints in MIT's undergraduate digital architecture class.\\[2pt]
+%3. Participated in the MIT Teaching \& Learning Lab Graduate Teaching ...\\
+4. Worked with course staff to deploy \ttt{OverCode} [Glassman et al. 2015] at University of California, Berkeley to help graders compose and deliver composition feedback and grades to over 1500 students in a single semester.\\[2pt]
+5. Led an MIT M.Eng. student through the process of deploying a variant of the same tool, \ttt{GroverCode}, to fulfill her thesis requirement and support the composition grading of hundreds of MIT student-written programs submitted in the MIT EECS department's introductory programming course.\\[2pt]
+%5. Co-taught the combined undergraduate/graduate user interface design course that was part of the core curriculum for CS students in the MIT EECS department (approx. 175 students).
+%1. Faculty Director for the Jacobs Institute for Design Innovation at UC Berkeley, a new undergraduate engineering design institute at home in the newly constructed Jacobs Hall. (CTO Spring 2014--2016, Director 2016--Present, building opened in Fall 2015.)\\{\small \url{http://jacobsinstitute.berkeley.edu}}\\[2pt]
+%2. Co-Founder and Co-Director of the CITRIS Invention Lab, a rapid prototyping facility and experiential learning studio that focuses on wireless electronics and digital fabrication tools. (2012--Present)\\{\small \url{http://inventionlab.org}} \\[2pt]
+%2. Participated in Presidential Chair Fellows teaching improvement program at UC Berkeley. Received the CS Division’s Jim and Donna Gray Faculty Award for Excellence in Undergraduate Teaching and the Diane S. McEntyre Award for Excellence in Teaching.\\[2pt]
+%3. Advisor for underrepresented undergraduate students participating in NSF REU summer research programs at UC Berkeley (2010–present).
+
+%4. Developed new class on interactive device design at UC Berkeley, taught annually since Fall 2012.\\{\small \url{http://hci.berkeley.edu/devicedesign}}\\[2pt]
+
+%4. Co-sponsored post-doctoral position for M. Etemadi, split between UCB and UCSF (2014).
+%2. Re-developed undergraduate class on user interface design at UC Berkeley.\\[2pt]
+%3. Initiated undergraduate certificate program {\em Course Thread on Human-Centered Design}, administered by the Berkeley Townsend Center for the Humanities.\\[2pt]
+%3. Organized workshop series on user interface design techniques.\\[2pt]
+%3. Participated in Presidential Chair Fellows teaching improvement program at UC Berkeley.\\[2pt]
+%4. Re-developed graduate class on HCI research at UC Berkeley.\\[2pt]
+%5. Advisor to MobileWorks, a UC Berkeley crowdsourcing startup company. (2011--Present)
+%1. Developed graduate class on crowdsourcing at UC Berkeley. (Spring 2011)\\[2pt]
+%2. Co-organized workshop on crowdsourcing at CHI 2011 in Vancouver, Canada. The workshop had more than 50 attendees.\\[2pt]
+%4. Organized and taught two-day course on interactive graphics programming for art and design students at California College of Arts. (Summer 2009)
+
+%\Section{Collaborators (33 collaborators at 17 institutions):}\\
+%Alice Agogino (Berkeley), Maneesh Agrawala (Berkeley), Rajeev Alur (UPenn), Michel Beaudouin-Lafon (Univ. Paris), Michael Bernstein (Stanford), Ras Bodik (Berkeley), Jan Borchers (RWTH Aachen), Tony DeRose (Pixar), Mira Dontcheva (Adobe), Steven Dow (CMU), Mozziyar Etemadi (UCSF), George Fitzmaurice (Autodesk), Sean Follmer (MIT Media Lab), Armando Fox (Berkeley), Tovi Grossman (Autodesk), Sumit Gulwani (MSR), Marti Hearst (Berkeley), Scott Klemmer (PhD advisor - UCSD), Edward Lee (Berkeley), Philip Levis (Stanford), Wilmot Li (Adobe), Kurt Luther (Virginia Tech), Wendy Mackay (INRIA), Lena Mamykina (Columbia), Lora Oehlberg (INRIA), Eric Paulos (Berkeley), Tapan Parikh (Berkeley), Shuvo Roy (UCSF), Ryan Schmidt (Autodesk), Koushik Sen (Berkeley), Mahesh Viswanathan (UIUC), Li-Yi Wei (MSR), Paul Wright (Berkeley).\\[2pt]
+%Joel Brandt (Adobe), 
+%----------------------------------------------------------------------------
+%\vspace{-0.1in}
+%\Section{Graduate Advisors:}\\
+%Scott R. Klemmer (Ph.D., Stanford), Norm Badler (MSE, University of Pennsylvania)\\[2pt]
+%\vspace{-0.1in}
+
+%\Section{Thesis Advisor and Postgraduate-Scholar Sponsor (9 current, at 3 institutions):}\\
+%Postdoc (2): Gustavo Soares, David Mellis (Berkeley)\\
+%Ph.D. (6): Peggy Chi, Valkyrie Savage, Amy Pavel, Andrew Head (all Berkeley), Julie Newcomb (UW), Will McGrath (Stanford)\\
+%MS (1): Michelle Nguyen (Berkeley)
+%MS (3): Wei Wu (UC Berkeley), Philipp Gutheim (UC Berkeley), Drew Fisher (UC Berkeley), Alvin Yuan (Berkeley); \\
+%Postgraduate (1): Mozziyar Etemadi (UC Berkeley/UC San Francisco)\\[2pt]
+%----------------------------------------------------------------------------
+%--------------------------------------------------------------------
+%--------------------------------------------------------------------
+\end{document}
